@@ -14,13 +14,16 @@ using CounterStrikeSharp.API.Modules.Utils;
 
 namespace MatchZy
 {
+
+    public partial class MatchZy
+    {
         private void CommandRtv(CCSPlayerController? player, CommandInfo commandinfo)
         {
             if (IsPlayerAdmin(player, "css_rtv", "@css/config"))
             {
                 if (isMatchSetup)
                 {
-                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй!");
+                    PrintToChat(player, $" {ChatColors.Gold}Počas nastaveného zápasu nie je možné hlasovať!");
                     return;
                 }
                 if (isWarmup || isPractice)
@@ -29,13 +32,13 @@ namespace MatchZy
 
                     if (_selectedMap != null)
                     {
-                        PrintToChat(player, "Санал хураалт дууссан тул дахин эхлүүлэх боломжгүй.");
+                        PrintToChat(player, "Hlasovanie už je ukončené a nie je možné ho spustiť znova.");
                         return;
                     }
 
                     if (!_isVotingActive)
                     {
-                        PrintToChat(player, "Санал хураалт үргэлжилж байна!");
+                        PrintToChat(player, "Hlasovanie už bolo spustené a prebieha!");
                         return;
                     }
 
@@ -44,20 +47,20 @@ namespace MatchZy
                     var user = _usersArray[player.Index]!;
                     if (user.VotedRtv)
                     {
-                        PrintToChat(player, "Та газрын зургийн өөрчлөлтийн төлөө санал өгсөн байна!");
+                        PrintToChat(player, "Už si hlasoval pre zmenu mapy!");
                         return;
                     }
 
                     user.VotedRtv = true;
                     _votedRtv++;
-                    PrintToChatAll($"{player.PlayerName} газрын зургийг өөрчлөх санал хураалт эхэлсэн.");
+                    PrintToChatAll($"{player.PlayerName} spustil hlasovanie pre zmenu mapy.");
 
                     if (_votedRtv >= 1)
                         VoteMap(true);
                 }
                 else if (isMatchLive || isKnifeRound)
                 {
-                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
+                    PrintToChat(player, $" {ChatColors.Gold}Nie je možné hlasovať počas zápasu.");
                     return;
                 }
             }
@@ -66,6 +69,7 @@ namespace MatchZy
                 SendPlayerNotAdminMessage(player);
             }
         }
+
         private void VoteMap(bool forced)
         {
             // Define the file path
@@ -110,7 +114,7 @@ namespace MatchZy
                         else
                             optionCounts[option.Text] = count + 1;
                         _votedMap++;
-                        PrintToChatAll($"{controller.PlayerName} сонгосон {option.Text}");
+                        PrintToChatAll($"{controller.PlayerName} zvolil {option.Text}");
                     });
                 }
             }
@@ -146,7 +150,7 @@ namespace MatchZy
                         else
                             optionCounts[option.Text] = count + 1;
                         _votedMap++;
-                        PrintToChatAll($"{controller.PlayerName} сонгосон {option.Text}");
+                        PrintToChatAll($"{controller.PlayerName} zvolil {option.Text}");
                     });
                 }
             }
@@ -164,9 +168,9 @@ namespace MatchZy
         {
             if (optionCounts.Count == 0 && forced)
             {
-                PrintToChatAll("Шаардлагатай тооны саналд хүрч чадаагүй, одоогийн газрын зураг хэвээр байна!");
-                PrintToChatAll("Шаардлагатай тооны саналд хүрч чадаагүй, одоогийн газрын зураг хэвээр байна!");
-                PrintToChatAll("Шаардлагатай тооны саналд хүрч чадаагүй, одоогийн газрын зураг хэвээр байна!");
+                PrintToChatAll("Nebolo dosiahnut� potrebn� mno�stvo hlasov, ost�va aktu�lna mapa!");
+                PrintToChatAll("Nebolo dosiahnut� potrebn� mno�stvo hlasov, ost�va aktu�lna mapa!");
+                PrintToChatAll("Nebolo dosiahnut� potrebn� mno�stvo hlasov, ost�va aktu�lna mapa!");
                 ResetData();
                 return;
             }
@@ -185,9 +189,9 @@ namespace MatchZy
 
             if (forced)
             {
-                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
-                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
-                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
+                PrintToChatAll($"Po�as hlasovania bola zvolen� mapa {_selectedMap}.");
+                PrintToChatAll($"Po�as hlasovania bola zvolen� mapa {_selectedMap}.");
+                PrintToChatAll($"Po�as hlasovania bola zvolen� mapa {_selectedMap}.");
 
                 AddTimer(5, ChangeMapRTV);
                 return;
@@ -215,12 +219,12 @@ namespace MatchZy
 
         private void PrintToChat(CCSPlayerController controller, string msg)
         {
-            controller.PrintToChat($"\x01[\x04voteMAP 1sT\x01] {msg}");
+            controller.PrintToChat($"\x08[ \x0CRockTheVote \x08] {msg}");
         }
 
         private void PrintToChatAll(string msg)
         {
-            Server.PrintToChatAll($"\x01[\x04voteMAP 1sT\x01] {msg}");
+            Server.PrintToChatAll($"\x08[ \x0CRockTheVote \x08] {msg}");
         }
 
         private Config LoadConfig()
@@ -274,6 +278,7 @@ namespace MatchZy
             }
         }
     }
+}
 
     public class Config
     {
