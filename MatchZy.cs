@@ -18,8 +18,8 @@ namespace MatchZy
         public override string ModuleAuthor => "WD- (https://github.com/shobhit-pathak/)";
         public override string ModuleDescription => "A plugin for running and managing CS2 practice/pugs/scrims/matches!";
 
-        public string chatPrefix = $"[{ChatColors.Green}MatchZy{ChatColors.Default}]";
-        public string adminChatPrefix = $"[{ChatColors.Red}ADMIN{ChatColors.Default}]";
+        public string chatPrefix = $"[{ChatColors.Green}1sT{ChatColors.Default}]";
+        public string adminChatPrefix = $"[{ChatColors.Green}ADMIN{ChatColors.Default}]";
 
         // RTV data
         private Config _config;
@@ -258,10 +258,10 @@ namespace MatchZy
                         }
                     }
 
-                    player.PrintToChat($" {ChatColors.Gold}===>{ChatColors.Default}Vitaj na {chatPrefix} serveri!{ChatColors.Gold}<==={ChatColors.Default}");
-                    player.PrintToChat($"Spustenie hlasovania pre zmenu mapy {ChatColors.Green}!rtv");
-                    player.PrintToChat($"Pre spustenie hry napíš do chatu {ChatColors.Green}.ready {ChatColors.Default}alebo {ChatColors.Green}.rdy");
-                    player.PrintToChat($"Pre spustenie Practice módu napíš {ChatColors.Green}.prac");
+                    player.PrintToChat($" {ChatColors.Default}Тавтай морил {chatPrefix} сервэрт!");
+                    player.PrintToChat($"Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
+                    player.PrintToChat($"Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.ready {ChatColors.Default}эсвэл {ChatColors.Green}.rdy {ChatColors.Default}гэж бичнэ үү");
+                    player.PrintToChat($"Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
 
                     if (player.UserId.HasValue)
                     {
