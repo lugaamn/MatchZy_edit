@@ -114,13 +114,13 @@ namespace MatchZy
                 }
                 if (unreadyPlayers.Count > 0) {
                     string unreadyPlayerList = string.Join(", ", unreadyPlayers);
-                    Server.PrintToChatAll($"Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
-                    Server.PrintToChatAll($"Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.ready {ChatColors.Default}эсвэл {ChatColors.Green}.rdy {ChatColors.Default}гэж бичнэ үү");
-                    Server.PrintToChatAll($"Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
-                    Server.PrintToChatAll($"Тоглолтыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}");
+                    Server.PrintToChatAll($ {chatprefix}: "Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
+                    Server.PrintToChatAll($ {chatprefix}: "Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.ready {ChatColors.Default}эсвэл {ChatColors.Green}.rdy {ChatColors.Default}гэж бичнэ үү");
+                    Server.PrintToChatAll($ {chatprefix}: "Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
+                    Server.PrintToChatAll($ {chatprefix}: "Тоглолтыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}");
                 } else {
                     int countOfReadyPlayers = playerReadyStatus.Count(kv => kv.Value == true);
-                    Server.PrintToChatAll($"Тоглоомыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}{ChatColors.Default}, бэлэн тоглогчдын тоо: {ChatColors.Green}{countOfReadyPlayers}");
+                    Server.PrintToChatAll($"Тоглолтыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}{ChatColors.Default}, бэлэн тоглогчдын тоо: {ChatColors.Green}{countOfReadyPlayers}");
                 }
             }
         }
