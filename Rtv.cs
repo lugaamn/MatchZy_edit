@@ -219,12 +219,12 @@ namespace MatchZy
 
         private void PrintToChat(CCSPlayerController controller, string msg)
         {
-            controller.PrintToChat($"\x01[\x041sT] \x01 {msg}");
+            controller.PrintToChat($"[{ChatColors.Green}1sT{ChatColors.Default}] {msg}");
         }
 
         private void PrintToChatAll(string msg)
         {
-            Server.PrintToChatAll($"\x01[\x041sT] \x01 {msg}");
+            Server.PrintToChatAll($"[{ChatColors.Green}1sT{ChatColors.Default}] {msg}");
         }
 
         private Config LoadConfig()
