@@ -141,12 +141,12 @@ namespace MatchZy
                 if (unreadyPlayers.Count > 0)
                 {
                     string unreadyPlayerList = string.Join(", ", unreadyPlayers);
-                    //PrintWrappedLine(HudDestination.Center, "Pre spustenie Practice módu napíš .prac");
-                    PrintWrappedLine(HudDestination.Center, $"NotReady: {unreadyPlayerList}");
+                    //PrintWrappedLine(HudDestination.Center, "Практик горимыг эхлүүлэхийн тулд .prac гэж бичнэ үү");
+                    PrintWrappedLine(HudDestination.Center, $"Бэлэн биш тоглогчид: {unreadyPlayerList}");
                 }
                 else
                 {
-                    PrintWrappedLine(HudDestination.Center, "Všetci hráèi sú pripravený!");
+                    PrintWrappedLine(HudDestination.Center, "Бүх тоглогчид бэлэн байна!");
                 }
             }
         }
