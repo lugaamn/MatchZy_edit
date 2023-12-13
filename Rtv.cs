@@ -114,7 +114,7 @@ namespace MatchZy
                         else
                             optionCounts[option.Text] = count + 1;
                         _votedMap++;
-                        PrintToChatAll($"{controller.PlayerName} zvolil {option.Text}");
+                        PrintToChatAll($"{controller.PlayerName} сонгосон {option.Text}");
                     });
                 }
             }
@@ -150,7 +150,7 @@ namespace MatchZy
                         else
                             optionCounts[option.Text] = count + 1;
                         _votedMap++;
-                        PrintToChatAll($"{controller.PlayerName} zvolil {option.Text}");
+                        PrintToChatAll($"{controller.PlayerName} сонгосон {option.Text}");
                     });
                 }
             }
@@ -168,9 +168,9 @@ namespace MatchZy
         {
             if (optionCounts.Count == 0 && forced)
             {
-                PrintToChatAll("Nebolo dosiahnut� potrebn� mno�stvo hlasov, ost�va aktu�lna mapa!");
-                PrintToChatAll("Nebolo dosiahnut� potrebn� mno�stvo hlasov, ost�va aktu�lna mapa!");
-                PrintToChatAll("Nebolo dosiahnut� potrebn� mno�stvo hlasov, ost�va aktu�lna mapa!");
+                PrintToChatAll("Шаардлагатай тооны саналд хүрч чадаагүй, одоогийн газрын зураг хэвээр байна!");
+                PrintToChatAll("Шаардлагатай тооны саналд хүрч чадаагүй, одоогийн газрын зураг хэвээр байна!");
+                PrintToChatAll("Шаардлагатай тооны саналд хүрч чадаагүй, одоогийн газрын зураг хэвээр байна!");
                 ResetData();
                 return;
             }
@@ -189,9 +189,9 @@ namespace MatchZy
 
             if (forced)
             {
-                PrintToChatAll($"Po�as hlasovania bola zvolen� mapa {_selectedMap}.");
-                PrintToChatAll($"Po�as hlasovania bola zvolen� mapa {_selectedMap}.");
-                PrintToChatAll($"Po�as hlasovania bola zvolen� mapa {_selectedMap}.");
+                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
+                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
+                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
 
                 AddTimer(5, ChangeMapRTV);
                 return;
@@ -219,12 +219,12 @@ namespace MatchZy
 
         private void PrintToChat(CCSPlayerController controller, string msg)
         {
-            controller.PrintToChat($"\x08[ \x0CRockTheVote \x08] {msg}");
+            controller.PrintToChat($"\x01[\x041sT] \x01 {msg}");
         }
 
         private void PrintToChatAll(string msg)
         {
-            Server.PrintToChatAll($"\x08[ \x0CRockTheVote \x08] {msg}");
+            Server.PrintToChatAll($"\x01[\x041sT] \x01 {msg}");
         }
 
         private Config LoadConfig()
