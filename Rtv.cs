@@ -14,54 +14,58 @@ using CounterStrikeSharp.API.Modules.Utils;
 
 namespace MatchZy
 {
-
-    public partial class MatchZy
-    {
         private void CommandRtv(CCSPlayerController? player, CommandInfo commandinfo)
         {
-            if (isMatchSetup)
+            if (IsPlayerAdmin(player, "css_rtv", "@css/config"))
             {
-                PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй!");
-                return;
+                if (isMatchSetup)
+                {
+                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй!");
+                    return;
+                }
+                if (isWarmup || isPractice)
+                {
+                    if (player == null) return;
+
+                    if (_selectedMap != null)
+                    {
+                        PrintToChat(player, "Санал хураалт дууссан тул дахин эхлүүлэх боломжгүй.");
+                        return;
+                    }
+
+                    if (!_isVotingActive)
+                    {
+                        PrintToChat(player, "Санал хураалт үргэлжилж байна!");
+                        return;
+                    }
+
+                    var countPlayers = _usersArray.Count(user => user != null);
+                    var countVote = (int)(countPlayers * _config.Needed) == 0 ? 1 : countPlayers * _config.Needed;
+                    var user = _usersArray[player.Index]!;
+                    if (user.VotedRtv)
+                    {
+                        PrintToChat(player, "Та газрын зургийн өөрчлөлтийн төлөө санал өгсөн байна!");
+                        return;
+                    }
+
+                    user.VotedRtv = true;
+                    _votedRtv++;
+                    PrintToChatAll($"{player.PlayerName} газрын зургийг өөрчлөх санал хураалт эхэлсэн.");
+
+                    if (_votedRtv >= 1)
+                        VoteMap(true);
+                }
+                else if (isMatchLive || isKnifeRound)
+                {
+                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
+                    return;
+                }
             }
-            if (isWarmup || isPractice)
+            else
             {
-                if (player == null) return;
-
-                if (_selectedMap != null)
-                {
-                    PrintToChat(player, "Санал хураалт дууссан тул дахин эхлүүлэх боломжгүй.");
-                    return;
-                }
-
-                if (!_isVotingActive)
-                {
-                    PrintToChat(player, "Санал хураалт үргэлжилж байна!");
-                    return;
-                }
-
-                var countPlayers = _usersArray.Count(user => user != null);
-                var countVote = (int)(countPlayers * _config.Needed) == 0 ? 1 : countPlayers * _config.Needed;
-                var user = _usersArray[player.Index]!;
-                if (user.VotedRtv)
-                {
-                    PrintToChat(player, "Та газрын зургийн өөрчлөлтийн төлөө санал өгсөн байна!");
-                    return;
-                }
-
-                user.VotedRtv = true;
-                _votedRtv++;
-                PrintToChatAll($"{player.PlayerName} Санал хураалтыг эхлүүлэхийг хүсч байна.");
-
-                if (_votedRtv >= 1)
-                    VoteMap(true);
-            }
-            else if (isMatchLive || isKnifeRound) {
-                PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
-                return;
+                SendPlayerNotAdminMessage(player);
             }
         }
-
         private void VoteMap(bool forced)
         {
             // Define the file path
