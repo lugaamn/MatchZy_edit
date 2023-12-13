@@ -274,7 +274,6 @@ namespace MatchZy
             }
         }
     }
-}
 
     public class Config
     {
