@@ -82,7 +82,7 @@ namespace MatchZy
             if (isPractice)
             {
                 Server.PrintToChatAll($" Тушаалуудын жагсаалтыг харахын тулд {ChatColors.Green}.help {ChatColors.Default}гэж бичнэ үү");
-                PrintWrappedLine(HudDestination.Center, "Дасгалын горимоос гарахын тулд {ChatColors.Green}.exitprac {ChatColors.Default}гэж бичнэ үү");
+                PrintWrappedLine(HudDestination.Center, "Дасгалын горимоос гарахын тулд .exitprac гэж бичнэ үү");
             }
         }
 
