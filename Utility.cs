@@ -114,13 +114,13 @@ namespace MatchZy
                 }
                 if (unreadyPlayers.Count > 0) {
                     string unreadyPlayerList = string.Join(", ", unreadyPlayers);
-                    Server.PrintToChatAll($"Spustenie hlasovania pre zmenu mapy {ChatColors.Green}!rtv");
-                    Server.PrintToChatAll($"Pre spustenie hry nap� do chatu {ChatColors.Green}.ready {ChatColors.Default}alebo {ChatColors.Green}.rdy");
-                    Server.PrintToChatAll($"Pre spustenie Practice m�du nap� {ChatColors.Green}.prac");
-                    Server.PrintToChatAll($"Nutn� po�et hr��ov pre spustenie hry: {ChatColors.Green}{minimumReadyRequired}");
+                    Server.PrintToChatAll($"Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
+                    Server.PrintToChatAll($"Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.ready {ChatColors.Default}эсвэл {ChatColors.Green}.rdy {ChatColors.Default}гэж бичнэ үү");
+                    Server.PrintToChatAll($"Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
+                    Server.PrintToChatAll($"Тоглолтыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}");
                 } else {
                     int countOfReadyPlayers = playerReadyStatus.Count(kv => kv.Value == true);
-                    Server.PrintToChatAll($"Nutn� po�et hr��ov pre spustenie hry: {ChatColors.Green}{minimumReadyRequired}{ChatColors.Default}, po�et pripraven�ch hr��ov: {ChatColors.Green}{countOfReadyPlayers}");
+                    Server.PrintToChatAll($"Тоглоомыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}{ChatColors.Default}, бэлэн тоглогчдын тоо: {ChatColors.Green}{countOfReadyPlayers}");
                 }
             }
         }
@@ -141,12 +141,12 @@ namespace MatchZy
                 if (unreadyPlayers.Count > 0)
                 {
                     string unreadyPlayerList = string.Join(", ", unreadyPlayers);
-                    //PrintWrappedLine(HudDestination.Center, "Pre spustenie Practice m�du nap� .prac");
+                    //PrintWrappedLine(HudDestination.Center, "Pre spustenie Practice módu napíš .prac");
                     PrintWrappedLine(HudDestination.Center, $"NotReady: {unreadyPlayerList}");
                 }
                 else
                 {
-                    PrintWrappedLine(HudDestination.Center, "V�etci hr��i s� pripraven�!");
+                    PrintWrappedLine(HudDestination.Center, "Všetci hráèi sú pripravený!");
                 }
             }
         }
@@ -177,15 +177,15 @@ namespace MatchZy
         if (isPaused && matchStarted) {
             var pauseTeamName = unpauseData["pauseTeam"];
                 if ((string)pauseTeamName == "Admin") {
-                Server.PrintToChatAll($" {ChatColors.Green}Admin{ChatColors.Default} pozastavil z�pas.");
+                Server.PrintToChatAll($" {ChatColors.Green}Admin{ChatColors.Default} тоглолтыг түр зогсоов.");
                 } else if ((string)pauseTeamName == "RoundRestore" && !(bool)unpauseData["t"] && !(bool)unpauseData["ct"]) {
-                Server.PrintToChatAll($" Obnovenie kola, z�pas bol pozastaven�. Pre spustenie z�pasu musia oba t�my nap�sa� {ChatColors.Green}.unpause");
+                Server.PrintToChatAll($" Тоглолтыг түр зогсоов. Тоглолтыг эхлүүлэхийн тулд хоёр баг {ChatColors.Green}.unpause {ChatColors.Default}гэж бичих ёстой");
                 } else if ((bool)unpauseData["t"] && !(bool)unpauseData["ct"]) {
-                Server.PrintToChatAll($" {ChatColors.Green}{reverseTeamSides["TERRORIST"].teamName}{ChatColors.Default} chc� spusti� z�pas. {ChatColors.Green}{reverseTeamSides["CT"].teamName}{ChatColors.Default}, nap� {ChatColors.Green}.unpause {ChatColors.Default}pre potvrdenie.");
+                Server.PrintToChatAll($" {ChatColors.Green}{reverseTeamSides["TERRORIST"].teamName}{ChatColors.Default} тоглолтыг эхлүүлэхийг хүсч байна. {ChatColors.Green}{reverseTeamSides["CT"].teamName} {ChatColors.Default}баталгаажуулахын тулд {ChatColors.Green}.unpause {ChatColors.Default}гэж бичих.");
                 } else if (!(bool)unpauseData["t"] && (bool)unpauseData["ct"]) {
-                Server.PrintToChatAll($" {ChatColors.Green}{reverseTeamSides["CT"].teamName}{ChatColors.Default} chc� spusti� z�pas. {ChatColors.Green}{reverseTeamSides["TERRORIST"].teamName}{ChatColors.Default}, nap� {ChatColors.Green}.unpause {ChatColors.Default}pre potvrdenie.");
+                Server.PrintToChatAll($" {ChatColors.Green}{reverseTeamSides["CT"].teamName}{ChatColors.Default} тоглолтыг эхлүүлэхийг хүсч байна. {ChatColors.Green}{reverseTeamSides["TERRORIST"].teamName} {ChatColors.Default}баталгаажуулахын тулд {ChatColors.Green}.unpause {ChatColors.Default}гэж бичих.");
                 } else if (!(bool)unpauseData["t"] && !(bool)unpauseData["ct"]) {
-                    Server.PrintToChatAll($" {ChatColors.Green}{pauseTeamName}{ChatColors.Default} pozastavili z�pas. Pre spustenie hry nap� {ChatColors.Green}.unpause");
+                    Server.PrintToChatAll($" {ChatColors.Green}{pauseTeamName}{ChatColors.Default} тоглолтыг түр зогсоосон. Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.unpause {ChatColors.Default}гэж бичнэ үү");
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace MatchZy
                 Server.ExecuteCommand($"exec {warmupCfgPath}");
             } else {
                 Log($"[StartWarmup] Starting warmup! Warmup CFG not found in {absolutePath}, using default CFG!");
-                Server.ExecuteCommand("bot_kick;bot_quota 0;mp_autokick 0;mp_autoteambalance 0;mp_buy_anywhere 0;mp_buytime 15;mp_death_drop_gun 0;mp_free_armor 0;mp_ignore_round_win_conditions 0;mp_limitteams 0;mp_radar_showall 0;mp_respawn_on_death_ct 0;mp_respawn_on_death_t 0;mp_solid_teammates 0;mp_spectators_max 20;mp_maxmoney 16000;mp_startmoney 16000;mp_timelimit 0;sv_alltalk 0;sv_auto_full_alltalk_during_warmup_half_end 0;sv_coaching_enabled 1;sv_competitive_official_5v5 1;sv_deadtalk 1;sv_full_alltalk 0;sv_grenade_trajectory 0;mp_weapons_allow_typecount -1;sv_infinite_ammo 0;sv_showimpacts 0;sv_voiceenable 1;sm_cvar sv_mute_players_with_social_penalties 0;sv_mute_players_with_social_penalties 0;tv_relayvoice 1;sv_cheats 0;mp_ct_default_melee weapon_knife;mp_ct_default_secondary weapon_hkp2000;mp_ct_default_primary \"\";mp_t_default_melee weapon_knife;mp_t_default_secondary weapon_glock;mp_t_default_primary;mp_maxrounds 24;mp_warmup_start;mp_warmup_pausetimer 1;mp_warmuptime 9999;cash_team_bonus_shorthanded 0;cash_team_loser_bonus_shorthanded 0;");
+                Server.ExecuteCommand("bot_kick;bot_quota 0;mp_autokick 0;mp_autoteambalance 0;mp_buy_anywhere 1;mp_buytime 15;mp_death_drop_gun 0;mp_free_armor 2;mp_ignore_round_win_conditions 0;mp_limitteams 0;mp_radar_showall 0;mp_respawn_on_death_ct 0;mp_respawn_on_death_t 0;mp_solid_teammates 0;mp_spectators_max 20;mp_maxmoney 16000;mp_startmoney 16000;mp_timelimit 0;sv_alltalk 0;sv_auto_full_alltalk_during_warmup_half_end 0;sv_coaching_enabled 1;sv_competitive_official_5v5 1;sv_deadtalk 1;sv_full_alltalk 0;sv_grenade_trajectory 0;mp_weapons_allow_typecount -1;sv_infinite_ammo 0;sv_showimpacts 0;sv_voiceenable 1;sm_cvar sv_mute_players_with_social_penalties 0;sv_mute_players_with_social_penalties 0;tv_relayvoice 1;sv_cheats 0;mp_ct_default_melee weapon_knife;mp_ct_default_secondary weapon_hkp2000;mp_ct_default_primary \"\";mp_t_default_melee weapon_knife;mp_t_default_secondary weapon_glock;mp_t_default_primary;mp_maxrounds 24;mp_warmup_start;mp_warmup_pausetimer 1;mp_warmuptime 9999;cash_team_bonus_shorthanded 0;cash_team_loser_bonus_shorthanded 0;");
             }
         }
 
@@ -251,20 +251,20 @@ namespace MatchZy
         {
             if (isKnifeRound)
             {
-                Server.PrintToChatAll($" ===>{ChatColors.Green}KNIFE ROUND!");
-                Server.PrintToChatAll($" ===>{ChatColors.Green}KNIFE ROUND!");
-                Server.PrintToChatAll($" ===>{ChatColors.Green}KNIFE ROUND!");
+                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
+                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
+                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
             }
             else if (isMatchLive)
             {
-                Server.PrintToChatAll($" ===>{ChatColors.Green}HRA ZAH�JEN�!");
-                Server.PrintToChatAll($" ===>{ChatColors.Green}HRA ZAH�JEN�!");
-                Server.PrintToChatAll($" ===>{ChatColors.Green}HRA ZAH�JEN�!");
+                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
+                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
+                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
             }
         }
         private void SendSideSelectionMessage() {
             if (isSideSelectionPhase) {
-                Server.PrintToChatAll($" {ChatColors.Green}{knifeWinnerName}{ChatColors.Default} vyhrali knife round. Pre zvolenie strany nap� {ChatColors.Green}.stay {ChatColors.Default}alebo {ChatColors.Green}.switch");
+                Server.PrintToChatAll($" {ChatColors.Green}{knifeWinnerName}{ChatColors.Default} хутганы үе дээр хожлоо.{ChatColors.Green}.stay {ChatColors.Default}эсвэл {ChatColors.Green}.switch {ChatColors.Default}гэж бичнэ үү");
             }
         }
 
@@ -273,7 +273,7 @@ namespace MatchZy
             ExecWarmupCfg();
             knifeWinnerName = knifeWinner == 3 ? reverseTeamSides["CT"].teamName : reverseTeamSides["TERRORIST"].teamName;
             ShowDamageInfo();
-            Server.PrintToChatAll($" {ChatColors.Green}{knifeWinnerName}{ChatColors.Default} vyhrali knife round. Pre zvolenie strany nap� {ChatColors.Green}.stay {ChatColors.Default}alebo {ChatColors.Green}.switch");
+            Server.PrintToChatAll($" {ChatColors.Green}{knifeWinnerName}{ChatColors.Default} хутганы үе дээр хожлоо.{ChatColors.Green}.stay {ChatColors.Default}эсвэл {ChatColors.Green}.switch {ChatColors.Default}гэж бичнэ үү");
             if (sideSelectionMessageTimer == null) {
                 sideSelectionMessageTimer = AddTimer(chatTimerDelay, SendSideSelectionMessage, TimerFlags.REPEAT);
             }
@@ -306,7 +306,7 @@ namespace MatchZy
             } else {
                 Log($"[StartLive] Starting Live! Live CFG not found in {absolutePath}, using default CFG!");
                 Server.ExecuteCommand("ammo_grenade_limit_default 1;ammo_grenade_limit_flashbang 2;ammo_grenade_limit_total 4;bot_quota 0;cash_player_bomb_defused 300;cash_player_bomb_planted 300;cash_player_damage_hostage -30;cash_player_interact_with_hostage 300;cash_player_killed_enemy_default 300;cash_player_killed_enemy_factor 1;cash_player_killed_hostage -1000;cash_player_killed_teammate -300;cash_player_rescued_hostage 1000;cash_team_elimination_bomb_map 3250;cash_team_elimination_hostage_map_ct 3000;cash_team_elimination_hostage_map_t 3000;cash_team_hostage_alive 0;cash_team_hostage_interaction 600;cash_team_loser_bonus 1400;cash_team_loser_bonus_consecutive_rounds 500;cash_team_planted_bomb_but_defused 800;cash_team_rescued_hostage 600;cash_team_terrorist_win_bomb 3500;cash_team_win_by_defusing_bomb 3500;");
-                Server.ExecuteCommand("cash_team_win_by_hostage_rescue 2900;cash_team_win_by_time_running_out_bomb 3250;cash_team_win_by_time_running_out_hostage 3250;ff_damage_reduction_bullets 0.33;ff_damage_reduction_grenade 0.85;ff_damage_reduction_grenade_self 1;ff_damage_reduction_other 0.4;mp_afterroundmoney 0;mp_autokick 0;mp_autoteambalance 0;mp_backup_restore_load_autopause 1;mp_backup_round_auto 1;mp_buy_anywhere 0;mp_buy_during_immunity 0;mp_buytime 20;mp_c4timer 40;mp_ct_default_melee weapon_knife;mp_ct_default_primary \"\";mp_ct_default_secondary weapon_hkp2000;mp_death_drop_defuser 1;mp_death_drop_grenade 2;mp_death_drop_gun 1;mp_defuser_allocation 0;mp_display_kill_assists 1;mp_endmatch_votenextmap 0;mp_forcecamera 1;mp_free_armor 0;mp_freezetime 18;mp_friendlyfire 1;mp_give_player_c4 1;mp_halftime 1;mp_halftime_duration 15;mp_halftime_pausetimer 0;mp_ignore_round_win_conditions 0;mp_limitteams 0;mp_match_can_clinch 1;mp_match_end_restart 0;mp_maxmoney 16000;mp_maxrounds 24;mp_molotovusedelay 0;mp_overtime_enable 1;mp_overtime_halftime_pausetimer 0;mp_overtime_maxrounds 6;mp_overtime_startmoney 10000;mp_playercashawards 1;mp_randomspawn 0;mp_respawn_immunitytime 0;mp_respawn_on_death_ct 0;mp_respawn_on_death_t 0;mp_round_restart_delay 5;mp_roundtime 1.92;mp_roundtime_defuse 1.92;mp_roundtime_hostage 1.92;mp_solid_teammates 1;mp_starting_losses 1;mp_startmoney 800;mp_t_default_melee weapon_knife;mp_t_default_primary \"\";mp_t_default_secondary weapon_glock;mp_teamcashawards 1;mp_timelimit 0;mp_weapons_allow_map_placed 1;mp_weapons_allow_zeus 1;mp_weapons_glow_on_ground 0;mp_win_panel_display_time 3;occlusion_test_async 0;spec_freeze_deathanim_time 0;spec_freeze_panel_extended_time 0;spec_freeze_time 2;spec_freeze_time_lock 2;spec_replay_enable 0;sv_allow_votes 1;sv_auto_full_alltalk_during_warmup_half_end 0;sv_coaching_enabled 1;sv_competitive_official_5v5 1;sv_damage_print_enable 0;sv_deadtalk 1;sv_hibernate_postgame_delay 300;sv_holiday_mode 0;sv_ignoregrenaderadio 0;sv_infinite_ammo 0;sv_occlude_players 1;sv_talk_enemy_dead 0;sv_talk_enemy_living 0;sv_voiceenable 1;tv_relayvoice 1;mp_team_timeout_max 4;mp_team_timeout_time 30;sv_vote_command_delay 0;cash_team_bonus_shorthanded 0;cash_team_loser_bonus_shorthanded 0;mp_spectators_max 20;mp_team_intro_time 0;mp_restartgame 3;mp_warmup_end;");
+                Server.ExecuteCommand("cash_team_win_by_hostage_rescue 2900;cash_team_win_by_time_running_out_bomb 3250;cash_team_win_by_time_running_out_hostage 3250;ff_damage_reduction_bullets 0.33;ff_damage_reduction_grenade 0.85;ff_damage_reduction_grenade_self 1;ff_damage_reduction_other 0.4;mp_afterroundmoney 0;mp_autokick 0;mp_autoteambalance 0;mp_backup_restore_load_autopause 1;mp_backup_round_auto 1;mp_buy_anywhere 0;mp_buy_during_immunity 0;mp_buytime 20;mp_c4timer 40;mp_ct_default_melee weapon_knife;mp_ct_default_primary \"\";mp_ct_default_secondary weapon_hkp2000;mp_death_drop_defuser 1;mp_death_drop_grenade 2;mp_death_drop_gun 1;mp_defuser_allocation 0;mp_display_kill_assists 1;mp_endmatch_votenextmap 1;mp_forcecamera 1;mp_free_armor 0;mp_freezetime 18;mp_friendlyfire 1;mp_give_player_c4 1;mp_halftime 1;mp_halftime_duration 15;mp_halftime_pausetimer 0;mp_ignore_round_win_conditions 0;mp_limitteams 0;mp_match_can_clinch 1;mp_match_end_restart 0;mp_maxmoney 16000;mp_maxrounds 24;mp_molotovusedelay 0;mp_overtime_enable 1;mp_overtime_halftime_pausetimer 0;mp_overtime_maxrounds 6;mp_overtime_startmoney 10000;mp_playercashawards 1;mp_randomspawn 0;mp_respawn_immunitytime 0;mp_respawn_on_death_ct 0;mp_respawn_on_death_t 0;mp_round_restart_delay 5;mp_roundtime 1.92;mp_roundtime_defuse 1.92;mp_roundtime_hostage 1.92;mp_solid_teammates 1;mp_starting_losses 1;mp_startmoney 800;mp_t_default_melee weapon_knife;mp_t_default_primary \"\";mp_t_default_secondary weapon_glock;mp_teamcashawards 1;mp_timelimit 0;mp_weapons_allow_map_placed 1;mp_weapons_allow_zeus 1;mp_weapons_glow_on_ground 0;mp_win_panel_display_time 3;occlusion_test_async 1;spec_freeze_deathanim_time 0;spec_freeze_panel_extended_time 0;spec_freeze_time 2;spec_freeze_time_lock 2;spec_replay_enable 0;sv_allow_votes 1;sv_auto_full_alltalk_during_warmup_half_end 0;sv_coaching_enabled 1;sv_competitive_official_5v5 1;sv_damage_print_enable 0;sv_deadtalk 1;sv_hibernate_postgame_delay 300;sv_holiday_mode 0;sv_ignoregrenaderadio 0;sv_infinite_ammo 0;sv_occlude_players 0;sv_talk_enemy_dead 0;sv_talk_enemy_living 0;sv_voiceenable 1;tv_relayvoice 1;mp_team_timeout_max 4;mp_team_timeout_time 30;sv_vote_command_delay 0;cash_team_bonus_shorthanded 0;cash_team_loser_bonus_shorthanded 0;mp_spectators_max 20;mp_team_intro_time 0;mp_restartgame 3;mp_warmup_end;");
             }
             roundKnifeStartMessageTimer = AddTimer(roundKnifeStartMessageDelay, RoundStartMessage);
             // This is to reload the map once it is over so that all flags are reset accordingly
@@ -716,14 +716,14 @@ namespace MatchZy
             SetupRoundBackupFile();
             StartDemoRecording();
             if (isKnifeRequired) {
-                Server.PrintToChatAll($" {ChatColors.Green}Knife round sa spust� o 10sec!");
-                Server.PrintToChatAll($" {ChatColors.Green}Knife round sa spust� o 10sec!");
-                Server.PrintToChatAll($" {ChatColors.Green}Knife round sa spust� o 10sec!");
+                Server.PrintToChatAll($" {ChatColors.Default}Хутга {ChatColors.Green}10 {ChatColors.Default}секундын дараа эхэлнэ!");
+                Server.PrintToChatAll($" {ChatColors.Default}Хутга {ChatColors.Green}10 {ChatColors.Default}секундын дараа эхэлнэ!");
+                Server.PrintToChatAll($" {ChatColors.Default}Хутга {ChatColors.Green}10 {ChatColors.Default}секундын дараа эхэлнэ!");
                 StartKnifeRound();
             } else {
-                Server.PrintToChatAll($" {ChatColors.Green}Z�pas sa spust� o 10sec.");
-                Server.PrintToChatAll($" {ChatColors.Green}Z�pas sa spust� o 10sec.");
-                Server.PrintToChatAll($" {ChatColors.Green}Z�pas sa spust� o 10sec.");
+                Server.PrintToChatAll($" {ChatColors.Default}Тоглолт {ChatColors.Green}10 {ChatColors.Default}секундын дараа эхэлнэ.");
+                Server.PrintToChatAll($" {ChatColors.Default}Тоглолт {ChatColors.Green}10 {ChatColors.Default}секундын дараа эхэлнэ.");
+                Server.PrintToChatAll($" {ChatColors.Default}Тоглолт {ChatColors.Green}10 {ChatColors.Default}секундын дараа эхэлнэ.");
                 StartLive();
             }
         }
@@ -981,7 +981,7 @@ namespace MatchZy
                 if (isMatchLive)
                 {
                     (int t1score, int t2score) = GetTeamsScore();
-                    Server.PrintToChatAll($" {ChatColors.Green}{matchzyTeam1.teamName} [{t1score} - {t2score}] {matchzyTeam2.teamName}");
+                    Server.PrintToChatAll($" {ChatColors.Default}{matchzyTeam1.teamName} [{ChatColors.Green}{t1score} - {t2score}{ChatColors.Default}] {matchzyTeam2.teamName}");
 
                     ShowDamageInfo();
 
@@ -1007,7 +1007,7 @@ namespace MatchZy
                             unreadyPlayerMessageTimer.Kill();
                             unreadyPlayerMessageTimer = null;
                         }
-                        Server.PrintToChatAll($" Obnovenie kola vy�iadan� od {ChatColors.Green}{reverseTeamSides["CT"].teamName}{ChatColors.Default} bolo zru�en�! Oponenti nepotvrdili pr�kazom {ChatColors.Green}.stop{ChatColors.Default}");
+                        Server.PrintToChatAll($" {ChatColors.Green}{reverseTeamSides["CT"].teamName}{ChatColors.Default}-с тоглолтыг сэргээх хүсэлт гаргасан, хүсэлтийг цуцалсан! Өрсөлдөгчид {ChatColors.Green}.stop{ChatColors.Default} тушаалаар баталгаажуулаагүй");
                     }
                     else if (!stopData["ct"] && stopData["t"])
                     {
@@ -1016,7 +1016,7 @@ namespace MatchZy
                             unreadyPlayerMessageTimer.Kill();
                             unreadyPlayerMessageTimer = null;
                         }
-                        Server.PrintToChatAll($" Obnovenie kola vy�iadan� od {ChatColors.Green}{reverseTeamSides["TERRORIST"].teamName}{ChatColors.Default} bolo zru�en�! Oponenti nepotvrdili pr�kazom {ChatColors.Green}.stop{ChatColors.Default}");
+                        Server.PrintToChatAll($" {ChatColors.Green}{reverseTeamSides["TERRORIST"].teamName}{ChatColors.Default}-с тоглолтыг сэргээх хүсэлт гаргасан, хүсэлтийг цуцалсан! Өрсөлдөгчид {ChatColors.Green}.stop{ChatColors.Default} тушаалаар баталгаажуулаагүй");
                     }
 
                     // Invalidate .stop requests after a round is completed.
@@ -1085,7 +1085,7 @@ namespace MatchZy
 
         private void PauseMatch(CCSPlayerController? player, CommandInfo? command) {
             if (isMatchLive && isPaused) {
-                ReplyToUserCommand(player, "Z�pas u� je pozastaven�!");
+                ReplyToUserCommand(player, "Zápas už je pozastavený!");
                 return;
             }
             if (IsHalfTimePhase())
@@ -1123,7 +1123,7 @@ namespace MatchZy
                 {
                     return;
                 }
-                Server.PrintToChatAll($" {ChatColors.Green}{pauseTeamName}{ChatColors.Default} pozastavili z�pas. Pre pokra�ovanie musia oba t�my nap�sa� {ChatColors.Green}.unpause");
+                Server.PrintToChatAll($" {ChatColors.Green}{pauseTeamName}{ChatColors.Default} тоглолтыг түр зогсоосон. Үргэлжлүүлэхийн тулд хоёр баг {ChatColors.Green}.unpause {ChatColors.Default}гэж бичих ёстой");
                 SetMatchPausedFlags();
 
                 if (pausedStateTimer == null) {
@@ -1141,29 +1141,29 @@ namespace MatchZy
             }
             if (isMatchLive && isPaused)
             {
-                ReplyToUserCommand(player, "Z�pas u� je pozastaven�!");
+                ReplyToUserCommand(player, "Тоглолт түр зогссон!");
                 return;
             }
             if (IsHalfTimePhase())
             {
-                ReplyToUserCommand(player, "Po�as pol�asu nie je mo�n� pozastavi� z�pas.");
+                ReplyToUserCommand(player, "Тоглолтыг хагас цагт түр зогсоох боломжгүй.");
                 return;
             }
             if (IsPostGamePhase())
             {
-                ReplyToUserCommand(player, "Po ukon�en� hry nie je mo�n� pozastavi� z�pas.");
+                ReplyToUserCommand(player, "Тоглолт дууссаны дараа тоглолтыг түр зогсоох боломжгүй.");
                 return;
             }
             if (IsTacticalTimeoutActive())
             {
-                ReplyToUserCommand(player, "Tactical timeout je akt�vny, nem��e� pozastavi� z�pas.");
+                ReplyToUserCommand(player, "Тактикийн завсарлага идэвхтэй байгаа тул та тоглолтыг түр зогсоох боломжгүй.");
                 return;
             }
             unpauseData["pauseTeam"] = "Admin";
-            Server.PrintToChatAll($" {ChatColors.Green}Admin{ChatColors.Default} pozastavil z�pas.");
+            Server.PrintToChatAll($" {ChatColors.Green}Admin{ChatColors.Default} тоглолтыг түр зогсоов.");
             if (player == null)
             {
-                Server.PrintToConsole($" Admin pozastavil z�pas.");
+                Server.PrintToConsole($" ADMIN тоглолтыг түр зогсоосон.");
             }
             SetMatchPausedFlags();
         }
@@ -1177,12 +1177,12 @@ namespace MatchZy
                     SendPlayerNotAdminMessage(player);
                     return;
                 }
-                Server.PrintToChatAll($" {ChatColors.Green}Admin{ChatColors.Default} spustil hru, z�pas bude pokra�ova�!");
+                Server.PrintToChatAll($" {ChatColors.Green}Admin{ChatColors.Default} Тоглолт эхэлсэн, тоглолт үргэлжлэх болно!");
                 UnpauseMatch();
 
                 if (player == null)
                 {
-                    Server.PrintToConsole(" Admin spustil hru, z�pas bude pokra�ova�!");
+                    Server.PrintToConsole(" ADMIN тоглолтыг эхлүүллээ, тоглолт үргэлжлэх болно!");
                 }
             }
         }
@@ -1213,11 +1213,11 @@ namespace MatchZy
             if (matchStarted || (!isPractice && !isSleep)) return;
             ExecUnpracCommands();
             ResetMatch();
-            Server.PrintToChatAll($" {ChatColors.Gold}PUG m�d!");
+            Server.PrintToChatAll($" {ChatColors.Gold}PUG mód!");
         }
 
         private void SendPlayerNotAdminMessage(CCSPlayerController? player) {
-            ReplyToUserCommand(player, "Nem� opr�vnenie pre pou�itie tohoto pr�kaz�!");
+            ReplyToUserCommand(player, "Та энэ тушаалыг ашиглах эрхгүй! ^_- _|_ :)");
         }
         private string GetColorTreatedString(string message)
         {
@@ -1242,12 +1242,12 @@ namespace MatchZy
         {
             if (isPractice)
             {
-                Server.PrintToChatAll($" Dostupn� pr�kazy:");
+                Server.PrintToChatAll($" Боломжтой тушаалууд:");
                 Server.PrintToChatAll($" {ChatColors.Green}.exitprac .spawn .ctspawn .tspawn .clear .god .t .ct .spec .fas");
-                Server.PrintToChatAll($" Pr�kazy pre botov:");
+                Server.PrintToChatAll($" Ботуудад зориулсан тушаалууд:");
                 Server.PrintToChatAll($" {ChatColors.Green}.bot .crouchbot .boost .crouchboost .nobots");
-                Server.PrintToChatAll($" Nades lineup pr�kazy:");
-                Server.PrintToChatAll($" {ChatColors.Green}.listnades .loadnade <name> .savenade <n�zov popis> .delnade <name> .importnade <code>");
+                Server.PrintToChatAll($" Nades тушаалууд:");
+                Server.PrintToChatAll($" {ChatColors.Green}.listnades .loadnade <name> .savenade <name> .delnade <name> .importnade <code>");
                 return;
             }
             if (readyAvailable)
@@ -1261,7 +1261,7 @@ namespace MatchZy
             if (matchStarted)
             {
                 string stopCommandMessage = isStopCommandAvailable ? ".stop" : "";
-                ReplyToUserCommand(player, $" Dostupn� pr�kazy:");
+                ReplyToUserCommand(player, $" Dostupné príkazy:");
                 ReplyToUserCommand(player, $" {ChatColors.Green}.pause .unpause .tac .tech{stopCommandMessage}");
                 return;
             }
