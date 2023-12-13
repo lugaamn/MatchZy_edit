@@ -23,7 +23,7 @@ namespace MatchZy
             {
                 if (isMatchSetup)
                 {
-                    PrintToChat(player, $" {ChatColors.Gold}Počas nastaveného zápasu nie je možné hlasovať!");
+                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй!");
                     return;
                 }
                 if (isWarmup || isPractice)
@@ -32,13 +32,13 @@ namespace MatchZy
 
                     if (_selectedMap != null)
                     {
-                        PrintToChat(player, "Hlasovanie už je ukončené a nie je možné ho spustiť znova.");
+                        PrintToChat(player, "Санал хураалт дууссан тул дахин эхлүүлэх боломжгүй.");
                         return;
                     }
 
                     if (!_isVotingActive)
                     {
-                        PrintToChat(player, "Hlasovanie už bolo spustené a prebieha!");
+                        PrintToChat(player, "Санал хураалт үргэлжилж байна!");
                         return;
                     }
 
@@ -47,20 +47,20 @@ namespace MatchZy
                     var user = _usersArray[player.Index]!;
                     if (user.VotedRtv)
                     {
-                        PrintToChat(player, "Už si hlasoval pre zmenu mapy!");
+                        PrintToChat(player, "Та газрын зургийн өөрчлөлтийн төлөө санал өгсөн байна!");
                         return;
                     }
 
                     user.VotedRtv = true;
                     _votedRtv++;
-                    PrintToChatAll($"{player.PlayerName} spustil hlasovanie pre zmenu mapy.");
+                    PrintToChatAll($"{player.PlayerName} газрын зургийг өөрчлөх санал хураалт эхэлсэн.");
 
                     if (_votedRtv >= 1)
                         VoteMap(true);
                 }
                 else if (isMatchLive || isKnifeRound)
                 {
-                    PrintToChat(player, $" {ChatColors.Gold}Nie je možné hlasovať počas zápasu.");
+                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
                     return;
                 }
             }
