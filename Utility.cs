@@ -251,15 +251,15 @@ namespace MatchZy
         {
             if (isKnifeRound)
             {
-                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
-                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
-                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
+                Server.PrintToChatAll($" [{ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
+                Server.PrintToChatAll($" [{ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
+                Server.PrintToChatAll($" [{ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}ХУТГА!");
             }
             else if (isMatchLive)
             {
-                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
-                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
-                Server.PrintToChatAll($" [ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
+                Server.PrintToChatAll($" [{ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
+                Server.PrintToChatAll($" [{ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
+                Server.PrintToChatAll($" [{ChatColors.Green}1sT{ChatColors.Default}] {ChatColors.Green}LIVE GL HF!");
             }
         }
         private void SendSideSelectionMessage() {
