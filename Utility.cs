@@ -112,10 +112,9 @@ namespace MatchZy
                         unreadyPlayers.Add(playerData[key].PlayerName);
                     }
                 }
-                public string chatPrefix = $"[{ChatColors.Green}1sT{ChatColors.Default}]";
                 if (unreadyPlayers.Count > 0) {
                     string unreadyPlayerList = string.Join(", ", unreadyPlayers);
-                    Server.PrintToChatAll($ {chatPrefix}: "Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
+                    Server.PrintToChatAll($ {ChatColors.Default}[ChatColors.Green}1sTChatColors.Default}]: "Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
                     Server.PrintToChatAll($ {chatPrefix}: "Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.ready {ChatColors.Default}эсвэл {ChatColors.Green}.rdy {ChatColors.Default}гэж бичнэ үү");
                     Server.PrintToChatAll($ {chatPrefix}: "Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
                     Server.PrintToChatAll($ {chatPrefix}: "Тоглолтыг эхлүүлэхэд шаардлагатай тоглогчдын тоо: {ChatColors.Green}{minimumReadyRequired}");
