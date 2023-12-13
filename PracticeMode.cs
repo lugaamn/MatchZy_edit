@@ -64,13 +64,13 @@ namespace MatchZy
                 Server.ExecuteCommand("""mp_t_default_grenades "weapon_molotov weapon_hegrenade weapon_smokegrenade weapon_flashbang weapon_decoy"; mp_t_default_primary "weapon_ak47"; mp_warmup_online_enabled "true"; mp_warmup_pausetimer "1"; mp_warmup_start; bot_quota_mode fill; mp_solid_teammates 2; mp_autoteambalance false; mp_teammates_are_enemies false; buddha 1; buddha_ignore_bots 1; buddha_reset_hp 100;""");
             }
             GetSpawns();
-            Server.PrintToChatAll($" {ChatColors.Gold}Practice mode spusten�!");
-            Server.PrintToChatAll($" Dostupn� pr�kazy:");
+            Server.PrintToChatAll($" {ChatColors.Green}Дасгалын горим эхэллээ!");
+            Server.PrintToChatAll($" Боломжтой тушаалууд:");
             Server.PrintToChatAll($" {ChatColors.Green}.exitprac .spawn .ctspawn .tspawn .clear .god .t .ct .spec .fas");
-            Server.PrintToChatAll($" Pr�kazy pre botov:");
+            Server.PrintToChatAll($" Ботуудад зориулсан тушаалууд:");
             Server.PrintToChatAll($" {ChatColors.Green}.bot .crouchbot .boost .crouchboost .nobots");
-            Server.PrintToChatAll($" Nades lineup pr�kazy:");
-            Server.PrintToChatAll($" {ChatColors.Green}.listnades .loadnade <name> .savenade <n�zov popis> .delnade <name> .importnade <code>");
+            Server.PrintToChatAll($" Nades тушаалууд:");
+            Server.PrintToChatAll($" {ChatColors.Green}.listnades .loadnade <name> .savenade <name> .delnade <name> .importnade <code>");
             if (pracMessageTimer == null)
             {
                 pracMessageTimer = AddTimer(pracMessageDelay, PracMessageStart, TimerFlags.REPEAT);
@@ -81,8 +81,8 @@ namespace MatchZy
         {
             if (isPractice)
             {
-                Server.PrintToChatAll($" Pre zoznam pr�kazov nap� {ChatColors.Green}.help");
-                PrintWrappedLine(HudDestination.Center, "Pre ukon�enie Practice m�du nap� .exitprac");
+                Server.PrintToChatAll($" Тушаалуудын жагсаалтыг харахын тулд {ChatColors.Green}.help {ChatColors.Default}гэж бичнэ үү");
+                PrintWrappedLine(HudDestination.Center, "Дасгалын горимоос гарахын тулд {ChatColors.Green}.exitprac {ChatColors.Default}гэж бичнэ үү");
             }
         }
 
@@ -426,11 +426,11 @@ namespace MatchZy
                 var savedNadesDict = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, Dictionary<string, string>>>>(existingJson)
                                     ?? new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
 
-                ReplyToUserCommand(player, $"\x0D-----V�etky ulo�en� gran�ty pre mapu \x06{Server.MapName}\x0D-----");
+                ReplyToUserCommand(player, $"\x0D-----Газрын зурагт зориулж хадгалсан бүх гранатууд \x06{Server.MapName}\x0D-----");
 
                 // List lineups for the specified player
                 ListLineups(player, "default", Server.MapName, savedNadesDict, nadeFilter);
-                ReplyToUserCommand(player, $"\x0D-----V�etky ulo�en� gran�ty hr��a \x06{playerName}\x0D-----");
+                ReplyToUserCommand(player, $"\x0D-----Тоглогчийн хадгалсан бүх гранатууд \x06{playerName}\x0D-----");
 
                 // List lineups for the current player
                 ListLineups(player, player.SteamID.ToString(), Server.MapName, savedNadesDict, nadeFilter);
@@ -585,13 +585,13 @@ namespace MatchZy
             if (currentHP > 100)
             {
                 player.PlayerPawn.Value.Health = 100;
-                ReplyToUserCommand(player, $"God mode {ChatColors.Green}zak�zan�!");
+                ReplyToUserCommand(player, $"God mode {ChatColors.Green}хориглосон!");
                 return;
             }
             else
             {
                 player.PlayerPawn.Value.Health = 2147483647; // max 32bit int
-                ReplyToUserCommand(player, $"God mode {ChatColors.Green}povolen�");
+                ReplyToUserCommand(player, $"God mode {ChatColors.Green}зөвшөөрсөн");
                 return;
             }
         }
@@ -601,7 +601,7 @@ namespace MatchZy
         {
             if (matchStarted)
             {
-                ReplyToUserCommand(player, "Practice Mode nem��e by� spusten� po�as akt�vneho z�pasu!");
+                ReplyToUserCommand(player, "Тоглолтын үеэр дасгалын горимыг эхлүүлэх боломжгүй!");
                 return;
             }
 
@@ -781,7 +781,7 @@ namespace MatchZy
                 }
                 if (!unusedBotFound)
                 {
-                    Server.PrintToChatAll($" Nie je mo�n� prida� �al��ch botov, t�m je pln�. Pou�i pr�kaz {ChatColors.Green}.nobots {ChatColors.Default}pre odstr�nenie aktu�lnych botov.");
+                    Server.PrintToChatAll($" Өөр бот нэмэх боломжгүй, баг дүүрсэн байна {ChatColors.Green}.nobots {ChatColors.Default}тушаалыг ашиглан одоогийн ботуудыг устгана уу.");
                 }
 
                 isSpawningBot = false;
