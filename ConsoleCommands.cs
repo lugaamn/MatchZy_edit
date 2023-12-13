@@ -38,14 +38,14 @@ namespace MatchZy
             if (IsPlayerAdmin(player, "css_save_nades_as_global", "@css/config"))
             {
                 isSaveNadesAsGlobalEnabled = !isSaveNadesAsGlobalEnabled;
-                string GlobalNadesStatus = isSaveNadesAsGlobalEnabled ? "povolen�" : "zak�zan�";
+                string GlobalNadesStatus = isSaveNadesAsGlobalEnabled ? "идэвхжүүлсэн" : "идэвхгүй";
                 if (player == null)
                 {
-                    ReplyToUserCommand(player, $"Ukladanie lineup-ov pre v�etk�ch hr��ov je {GlobalNadesStatus}!");
+                    ReplyToUserCommand(player, $"Бүх тоглогчдын бүрэлдэхүүнийг хадгалах нь {GlobalNadesStatus}!");
                 }
                 else
                 {
-                    player.PrintToChat($"{chatPrefix} Ukladanie lineup-ov pre v�etk�ch hr��ov je {ChatColors.Green}{GlobalNadesStatus}{ChatColors.Default}!");
+                    player.PrintToChat($"{chatPrefix} Бүх тоглогчдын бүрэлдэхүүнийг хадгалах нь {ChatColors.Green}{GlobalNadesStatus}{ChatColors.Default}!");
                 }
             }
             else
@@ -64,10 +64,10 @@ namespace MatchZy
                         playerReadyStatus[player.UserId.Value] = false;
                     }
                     if (playerReadyStatus[player.UserId.Value]) {
-                        player.PrintToChat($" U� si ozna�en� ako pripraven�!");
+                        player.PrintToChat($" Та аль хэдийн бэлэн гэж тэмдэглэгдсэн байна!");
                     } else {
                         playerReadyStatus[player.UserId.Value] = true;
-                        player.PrintToChat($" Bol si ozna�en� ako pripraven�!");
+                        player.PrintToChat($" Таныг бэлэн гэж тэмдэглэсэн байна!");
                     }
                     AddTimer(afterReadyDelay, CheckLiveRequired);
                     HandleClanTags();
@@ -86,10 +86,10 @@ namespace MatchZy
                         playerReadyStatus[player.UserId.Value] = false;
                     }
                     if (!playerReadyStatus[player.UserId.Value]) {
-                        player.PrintToChat($" U� si ozna�en� ako nepripraven�!");
+                        player.PrintToChat($" Та аль хэдийн бэлэн биш гэж тэмдэглэгдсэн байна!");
                     } else {
                         playerReadyStatus[player.UserId.Value] = false;
-                        player.PrintToChat($" Bol si ozna�en� ako nepripraven�!");
+                        player.PrintToChat($" Таныг бэлэн биш гэж тэмдэглэсэн байна!");
                     }
                     HandleClanTags();
                     UnreadyHintMessageStart();
@@ -104,7 +104,7 @@ namespace MatchZy
             Log($"[!stay command] {player.UserId}, TeamNum: {player.TeamNum}, knifeWinner: {knifeWinner}, isSideSelectionPhase: {isSideSelectionPhase}");
             if (isSideSelectionPhase) {
                 if (player.TeamNum == knifeWinner) {
-                    Server.PrintToChatAll($" {knifeWinnerName} zvolili {ChatColors.Green}stay{ChatColors.Default}!");
+                    Server.PrintToChatAll($" {knifeWinnerName} сонголт {ChatColors.Green}stay{ChatColors.Default}!");
                     StartLive();
                 }
             }
@@ -119,7 +119,7 @@ namespace MatchZy
                 if (player.TeamNum == knifeWinner) {
                     Server.ExecuteCommand("mp_swapteams;");
                     SwapSidesInTeamData(true);
-                    Server.PrintToChatAll($" {knifeWinnerName} zvolili {ChatColors.Green}switch{ChatColors.Default}!");
+                    Server.PrintToChatAll($" {knifeWinnerName} сонголт {ChatColors.Green}switch{ChatColors.Default}!");
                     StartLive();
                 }
             }
@@ -162,7 +162,7 @@ namespace MatchZy
             if (isMatchLive && isPaused) {
                 var pauseTeamName = unpauseData["pauseTeam"];
                 if ((string)pauseTeamName == "Admin") {
-                    player?.PrintToChat($"Z�pas bol pozastaven� Adminom. Pauzu m��e zru�i� iba Admin!");
+                    player?.PrintToChat($"Тоглолтыг админ түр зогсоосон. Зөвхөн админ завсарлагааг цуцлах боломжтой!");
                     return;
                 }
                 string unpauseTeamName = "Admin";
@@ -186,7 +186,7 @@ namespace MatchZy
                     return;
                 }
                 if ((bool)unpauseData["t"] && (bool)unpauseData["ct"]) {
-                    Server.PrintToChatAll($" Pauza zru�en�, z�pas bude pokra�ova�!");
+                    Server.PrintToChatAll($" Завсарлага цуцлагдсан тул тоглолт үргэлжлэх болно!");
                     Server.ExecuteCommand("mp_unpause_match;");
                     isPaused = false;
                     unpauseData["ct"] = false;
@@ -200,7 +200,7 @@ namespace MatchZy
                     unpauseData["ct"] = false;
                     unpauseData["t"] = false;
                 } else {
-                    Server.PrintToChatAll($" {ChatColors.Green}{unpauseTeamName}{ChatColors.Default} chc� pokra�ova� v z�pase. {ChatColors.Green}{remainingUnpauseTeam}{ChatColors.Default}Pre potvrdenie nap� {ChatColors.Green}.unpause");
+                    Server.PrintToChatAll($" {ChatColors.Green}{unpauseTeamName}{ChatColors.Default} тоглолтыг үргэлжлүүлэхийг хүсч байна. {ChatColors.Green}{remainingUnpauseTeam}{ChatColors.Default}Баталгаажуулахын тулд {ChatColors.Green}.unpause {ChatColors.Default}гэж бичнэ үү");
                 }
                 if (!isPaused && pausedStateTimer != null) {
                     pausedStateTimer.Kill();
@@ -300,7 +300,7 @@ namespace MatchZy
                 if (!isPractice) {
                     ResetMatch();
                 } else {
-                    ReplyToUserCommand(player, "Practice m�d je akt�vny, nem��e� re�tartova� z�pas.");
+                    ReplyToUserCommand(player, "Дасгалын горим идэвхтэй байгаа тул та тоглолтыг дахин эхлүүлэх боломжгүй.");
                 }
             } else {
                 SendPlayerNotAdminMessage(player);
@@ -347,12 +347,12 @@ namespace MatchZy
             {
                 if (isMatchLive)
                 {
-                    player.PrintToChat($" {ChatColors.Green}Aktu�lne nie je mo�n� na��ta� config!");
+                    player.PrintToChat($" {ChatColors.Green}Одоогоор тохиргоог ачаалах боломжгүй байна!");
                     return;
                 }
                 else if (isMatchSetup)
                 {
-                    player.PrintToChat($" {ChatColors.Green}Z�pas u� je nastaven�!");
+                    player.PrintToChat($" {ChatColors.Green}Тоглолт аль хэдийн тохируулагдсан!");
                     return;
                 }
                 if (isWarmup || isPractice)
@@ -373,13 +373,13 @@ namespace MatchZy
             if (IsPlayerAdmin(player, "css_start", "@css/config"))
             {
                 if (isPractice) {
-                    ReplyToUserCommand(player, $"Po�as Practice m�du nem��e� spusti� z�pas. Pou�i pr�kaz {ChatColors.Green}.exitprac {ChatColors.Default}pre n�vrat do Pug m�du!");
+                    ReplyToUserCommand(player, $"Та дасгалын горимын үед тоглолт эхлүүлэх боломжгүй. {ChatColors.Green}.exitprac {ChatColors.Default}тушаалыг ашиглана уу. {ChatColors.Green}Pug {ChatColors.Default}горим уруу буцах!");
                     return;
                 }
                 if (matchStarted) {
                     player.PrintToChat($" Start command cannot be used if match is already started! If you want to unpause, please use .unpause");
                 } else {
-                    Server.PrintToChatAll($" {ChatColors.Green}Admin spustil z�pas!");
+                    Server.PrintToChatAll($" {ChatColors.Green}АDMIN {ChatColors.Default}тоглолтыг эхлүүллээ!");
                     HandleMatchStart();
                 }
             } else {
@@ -433,7 +433,7 @@ namespace MatchZy
             }
             
             if (matchStarted) {
-                ReplyToUserCommand(player, "Pug m�d u� je nastaven�!");
+                ReplyToUserCommand(player, "Pug горимыг аль хэдийн тохируулсан байна!");
                 return;
             }
 
@@ -444,7 +444,7 @@ namespace MatchZy
         public void OnExitPracCommand(CCSPlayerController? player, CommandInfo? command)
         {
             if (matchStarted) {
-                ReplyToUserCommand(player, "Pug m�d u� je nastaven�!");
+                ReplyToUserCommand(player, "Pug горимыг аль хэдийн тохируулсан байна!");
                 return;
             }
 
