@@ -112,6 +112,7 @@ namespace MatchZy
                         unreadyPlayers.Add(playerData[key].PlayerName);
                     }
                 }
+                public string chatPrefix = $"[{ChatColors.Green}1sT{ChatColors.Default}]";
                 if (unreadyPlayers.Count > 0) {
                     string unreadyPlayerList = string.Join(", ", unreadyPlayers);
                     Server.PrintToChatAll($ {chatPrefix}: "Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
