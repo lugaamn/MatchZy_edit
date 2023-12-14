@@ -140,7 +140,7 @@ namespace MatchZy
 
             if (string.IsNullOrEmpty(args))
             {
-                chatPrefix = $"[{ChatColors.Green}1sT{ChatColors.Default}]";
+                chatPrefix = $"[{ChatColors.Green}MatchZy{ChatColors.Default}]";
                 return;
             }
 
