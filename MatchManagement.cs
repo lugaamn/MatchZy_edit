@@ -22,11 +22,11 @@ namespace MatchZy
 
         public Team matchzyTeam1 = new()
         {
-            teamName = "Counter-Terrorists"
+            teamName = "COUNTER-TERRORISTS"
         };
         public Team matchzyTeam2 = new()
         {
-            teamName = "Terrorists"
+            teamName = "TERRORISTS"
         };
 
         public Dictionary<Team, string> teamSides = new();
@@ -276,7 +276,6 @@ namespace MatchZy
 
             Log($"[LoadMatchFromJSON] Success with matchid: {liveMatchId}!");
         }
-
         public void SetMapSides()
         {
             int mapNumber = matchConfig.CurrentMapNumber;
