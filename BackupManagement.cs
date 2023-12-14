@@ -89,7 +89,7 @@ namespace MatchZy
                     {
                         unreadyPlayerMessageTimer = AddTimer(chatTimerDelay, StopMessageRepeat, TimerFlags.REPEAT);
                     }
-                    Server.PrintToChatAll($" {ChatColors.Green}{stopTeamName}{ChatColors.Default} тоглолтыг энэ үеийн эхэнд сэргээхийг хүсч байна. {ChatColors.Green}{remainingStopTeam}{ChatColors.Default}Баталгаажуулахын тулд {ChatColors.Green}.stop {ChatColors.Default} гэж бичнэ үү ");
+                    Server.PrintToChatAll($" {ChatColors.Green}{stopTeamName}{ChatColors.Default} тоглолтыг сэргээхийг хүсч байна. {ChatColors.Green}{remainingStopTeam}{ChatColors.Default}Баталгаажуулахын тулд {ChatColors.Green}.stop {ChatColors.Default} гэж бичнэ үү ");
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace MatchZy
                     {
                         return;
                     }
-                    Server.PrintToChatAll($" {ChatColors.Green}{stopTeamName}{ChatColors.Default} тоглолтыг энэ үеийн эхэнд сэргээхийг хүсч байна. {ChatColors.Green}{remainingStopTeam}{ChatColors.Default}баталгаажуулахын тулд {ChatColors.Green}.stop {ChatColors.Default} гэж бичнэ үү ");
+                    Server.PrintToChatAll($" {ChatColors.Green}{stopTeamName}{ChatColors.Default} тоглолтыг сэргээхийг хүсч байна. {ChatColors.Green}{remainingStopTeam}{ChatColors.Default}баталгаажуулахын тулд {ChatColors.Green}.stop {ChatColors.Default} гэж бичнэ үү ");
                 }
             }
         }
