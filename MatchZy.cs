@@ -1,4 +1,4 @@
-﻿using CounterStrikeSharp.API;
+using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Utils;
@@ -14,12 +14,12 @@ namespace MatchZy
     {
 
         public override string ModuleName => "MatchZy";
-        public override string ModuleVersion => "0.5.1-alpha (siniii edit-0.4.2)";
+        public override string ModuleVersion => "0.5.1-alpha (siniii edit-0.4.4)";
         public override string ModuleAuthor => "WD- (https://github.com/shobhit-pathak/)";
         public override string ModuleDescription => "A plugin for running and managing CS2 practice/pugs/scrims/matches!";
 
-        public string chatPrefix = $"[{ChatColors.Green}1sT{ChatColors.Default}]";
-        public string adminChatPrefix = $"[{ChatColors.Green}ADMIN{ChatColors.Default}]";
+        public string chatPrefix = $"[{ChatColors.Green}MatchZy{ChatColors.Default}]";
+        public string adminChatPrefix = $"[{ChatColors.Red}ADMIN{ChatColors.Default}]";
 
         // RTV data
         private Config _config;
@@ -87,7 +87,7 @@ namespace MatchZy
         public int chatTimerDelay = 12;
         public int pracMessageDelay = 55;
         public int unreadyHintMessageDelay = 3;
-        public int restoreServerDelay = 2;
+        public int restoreServerDelay = 5;
         public int roundKnifeStartMessageDelay = 11;
         public int afterReadyDelay = 3;
 
