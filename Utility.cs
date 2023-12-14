@@ -1168,7 +1168,7 @@ namespace MatchZy
                 return;
             }
             unpauseData["pauseTeam"] = "Admin";
-            Server.PrintToChatAll($" {ChatColors.Green}ADMINChatColors.Default} тоглолтыг түр зогсоов.");
+            Server.PrintToChatAll($" {ChatColors.Green}ADMIN {ChatColors.Default}тоглолтыг түр зогсоов.");
             if (player == null)
             {
                 Server.PrintToConsole($" ADMIN тоглолтыг түр зогсоосон.");
