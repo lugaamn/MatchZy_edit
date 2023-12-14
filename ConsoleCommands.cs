@@ -41,11 +41,11 @@ namespace MatchZy
                 string GlobalNadesStatus = isSaveNadesAsGlobalEnabled ? "идэвхжүүлсэн" : "идэвхгүй";
                 if (player == null)
                 {
-                    ReplyToUserCommand(player, $"Бүх тоглогчдын бүрэлдэхүүнийг хадгалах нь {GlobalNadesStatus}!");
+                    ReplyToUserCommand(player, $"Бүх бүрэлдэхүүнийг хадгалах {GlobalNadesStatus}!");
                 }
                 else
                 {
-                    player.PrintToChat($"{chatPrefix} Бүх тоглогчдын бүрэлдэхүүнийг хадгалах нь {ChatColors.Green}{GlobalNadesStatus}{ChatColors.Default}!");
+                    player.PrintToChat($"{chatPrefix} Бүх бүрэлдэхүүнийг хадгалах {ChatColors.Green}{GlobalNadesStatus}{ChatColors.Default}!");
                 }
             }
             else
@@ -64,7 +64,7 @@ namespace MatchZy
                         playerReadyStatus[player.UserId.Value] = false;
                     }
                     if (playerReadyStatus[player.UserId.Value]) {
-                        player.PrintToChat($" Та аль хэдийн бэлэн гэж тэмдэглэгдсэн байна!");
+                        player.PrintToChat($" Таныг бэлэн гэж тэмдэглэсэн байна!");
                     } else {
                         playerReadyStatus[player.UserId.Value] = true;
                         player.PrintToChat($" Таныг бэлэн гэж тэмдэглэсэн байна!");
@@ -86,7 +86,7 @@ namespace MatchZy
                         playerReadyStatus[player.UserId.Value] = false;
                     }
                     if (!playerReadyStatus[player.UserId.Value]) {
-                        player.PrintToChat($" Та аль хэдийн бэлэн биш гэж тэмдэглэгдсэн байна!");
+                        player.PrintToChat($" Таныг бэлэн биш гэж тэмдэглэгдсэн байна!");
                     } else {
                         playerReadyStatus[player.UserId.Value] = false;
                         player.PrintToChat($" Таныг бэлэн биш гэж тэмдэглэсэн байна!");
@@ -341,8 +341,6 @@ namespace MatchZy
         [ConsoleCommand("css_load", "Load match settings")]
         public void CommandLoad(CCSPlayerController? player, CommandInfo? command)
         {
-            //if (player == null) return;
-
             if (IsPlayerAdmin(player, "css_load", "@css/config"))
             {
                 if (isMatchLive)
@@ -373,13 +371,13 @@ namespace MatchZy
             if (IsPlayerAdmin(player, "css_start", "@css/config"))
             {
                 if (isPractice) {
-                    ReplyToUserCommand(player, $"Та дасгалын горимын үед тоглолт эхлүүлэх боломжгүй. {ChatColors.Green}.exitprac {ChatColors.Default}тушаалыг ашиглана уу. {ChatColors.Green}Pug {ChatColors.Default}горим уруу буцах!");
+                    ReplyToUserCommand(player, $"Та дасгалын горимын үед тоглолт эхлүүлэх боломжгүй. {ChatColors.Green}.exitprac {ChatColors.Default}тушаалыг ашиглана уу. {ChatColors.Green}Pug {ChatColors.Default}горим уруу буц!");
                     return;
                 }
                 if (matchStarted) {
                     player.PrintToChat($" Start command cannot be used if match is already started! If you want to unpause, please use .unpause");
                 } else {
-                    Server.PrintToChatAll($" {ChatColors.Green}АDMIN {ChatColors.Default}тоглолтыг эхлүүллээ!");
+                    Server.PrintToChatAll($" {ChatColors.Green}ADMIN тоглолтыг эхлүүллээ!");
                     HandleMatchStart();
                 }
             } else {
