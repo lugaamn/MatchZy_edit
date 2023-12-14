@@ -19,54 +19,48 @@ namespace MatchZy
     {
         private void CommandRtv(CCSPlayerController? player, CommandInfo commandinfo)
         {
-            if (IsPlayerAdmin(player, "css_rtv", "@css/config"))
+            if (isMatchSetup)
             {
-                if (isMatchSetup)
-                {
-                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй!");
-                    return;
-                }
-                if (isWarmup || isPractice)
-                {
-                    if (player == null) return;
-
-                    if (_selectedMap != null)
-                    {
-                        PrintToChat(player, "Санал хураалт дууссан тул дахин эхлүүлэх боломжгүй.");
-                        return;
-                    }
-
-                    if (!_isVotingActive)
-                    {
-                        PrintToChat(player, "Санал хураалт үргэлжилж байна!");
-                        return;
-                    }
-
-                    var countPlayers = _usersArray.Count(user => user != null);
-                    var countVote = (int)(countPlayers * _config.Needed) == 0 ? 1 : countPlayers * _config.Needed;
-                    var user = _usersArray[player.Index]!;
-                    if (user.VotedRtv)
-                    {
-                        PrintToChat(player, "Та газрын зургийн өөрчлөлтийн төлөө санал өгсөн байна!");
-                        return;
-                    }
-
-                    user.VotedRtv = true;
-                    _votedRtv++;
-                    PrintToChatAll($"{player.PlayerName} газрын зургийг өөрчлөх санал хураалт эхэлсэн.");
-
-                    if (_votedRtv >= 1)
-                        VoteMap(true);
-                }
-                else if (isMatchLive || isKnifeRound)
-                {
-                    PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
-                    return;
-                }
+                PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй!");
+                return;
             }
-            else
+            if (isWarmup || isPractice)
             {
-                SendPlayerNotAdminMessage(player);
+                if (player == null) return;
+
+                if (_selectedMap != null)
+                {
+                    PrintToChat(player, "Санал хураалт дууссан тул дахин эхлүүлэх боломжгүй.");
+                    return;
+                }
+
+                if (!_isVotingActive)
+                {
+                    PrintToChat(player, "Санал хураалт үргэлжилж байна!");
+                    return;
+                }
+
+                var countPlayers = _usersArray.Count(user => user != null);
+                var countVote = (int)(countPlayers * _config.Needed) == 0 ? 1 : countPlayers * _config.Needed;
+                var user = _usersArray[player.Index]!;
+                if (user.VotedRtv)
+                {
+                    PrintToChat(player, "Та газрын зургийн өөрчлөлтийн төлөө санал өгсөн байна!");
+                    return;
+                }
+
+                user.VotedRtv = true;
+                _votedRtv++;
+                PrintToChatAll($" {player.PlayerName} {ChatColors.Green}саналаа өгөхийг хүсч байна.");
+                PrintToChatAll($" {ChatColors.Green}(саналын тоо: {ChatColors.Default}{_votedRtv}{ChatColors.Green} - шаардлагатай: {ChatColors.Default}{(int)countVote}{ChatColors.Green})");
+
+                if (_votedRtv == (int)countVote)
+                    VoteMap(true);
+            }
+
+            else if (isMatchLive || isKnifeRound) {
+                PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
+                return;
             }
         }
 
@@ -189,9 +183,9 @@ namespace MatchZy
 
             if (forced)
             {
-                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
-                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
-                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {_selectedMap}.");
+                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {ChatColors.Green}{_selectedMap}.");
+                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {ChatColors.Green}{_selectedMap}.");
+                PrintToChatAll($"Санал хураалтын явцад газрын зургийг сонгосон {ChatColors.Green}{_selectedMap}.");
 
                 AddTimer(5, ChangeMapRTV);
                 return;
