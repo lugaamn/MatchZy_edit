@@ -599,6 +599,10 @@ namespace MatchZy
         [ConsoleCommand("css_prac", "Starts practice mode")]
         public void OnPracCommand(CCSPlayerController? player, CommandInfo? command)
         {
+            if (!IsPlayerAdmin(player, "css_prac", "@css/map", "@custom/prac")) {
+                SendPlayerNotAdminMessage(player);
+                return;
+            }
             if (matchStarted)
             {
                 ReplyToUserCommand(player, "Тоглолтын үеэр дасгалын горимыг эхлүүлэх боломжгүй!");
