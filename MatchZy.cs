@@ -259,9 +259,9 @@ namespace MatchZy
                     }
 
                     player.PrintToChat($" {ChatColors.Default}Тавтай морил {chatPrefix} сервэрт!");
-                    //player.PrintToChat($"{chatPrefix}: Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
+                    player.PrintToChat($"{chatPrefix}: Газрын зургийг өөрчлөх санал хураалт {ChatColors.Green}!rtv");
                     player.PrintToChat($"{chatPrefix}: Тоглолтыг эхлүүлэхийн тулд {ChatColors.Green}.ready {ChatColors.Default}эсвэл {ChatColors.Green}.rdy {ChatColors.Default}гэж бичнэ үү");
-                    //player.PrintToChat($"{chatPrefix}: Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
+                    player.PrintToChat($"{chatPrefix}: Дасгалын горимыг эхлүүлэхийн тулд {ChatColors.Green}.prac {ChatColors.Default}гэж бичнэ үү");
 
                     if (player.UserId.HasValue)
                     {
