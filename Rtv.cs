@@ -18,6 +18,7 @@ namespace MatchZy
     public partial class MatchZy
     {
         private void CommandRtv(CCSPlayerController? player, CommandInfo commandinfo)
+        if (IsPlayerAdmin(player, "css_rtv", "@css/config"))
         {
             if (isMatchSetup)
             {
@@ -61,6 +62,11 @@ namespace MatchZy
             else if (isMatchLive || isKnifeRound) {
                 PrintToChat(player, $" {ChatColors.Green}Тоглолтын үеэр санал өгөх боломжгүй.");
                 return;
+            }
+        }
+        else
+            {
+                SendPlayerNotAdminMessage(player);
             }
         }
 
