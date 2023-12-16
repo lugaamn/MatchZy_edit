@@ -989,7 +989,7 @@ namespace MatchZy
                 if (isMatchLive)
                 {
                     (int t1score, int t2score) = GetTeamsScore();
-                    Server.PrintToChatAll($" {ChatColors.Default}{matchzyTeam1.teamName} [{ChatColors.Green}{t1score} - {t2score}{ChatColors.Default}] {matchzyTeam2.teamName}");
+                    Server.PrintToChatAll($" {chatPrefix} {ChatColors.Default}{matchzyTeam1.teamName} [{ChatColors.Green}{t1score} - {t2score}{ChatColors.Default}] {matchzyTeam2.teamName}");
 
                     ShowDamageInfo();
 
